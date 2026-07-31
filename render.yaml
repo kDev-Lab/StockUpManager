@@ -8,5 +8,5 @@ services:
     envVars:
       - key: ANTHROPIC_API_KEY
         sync: false
-            - key: ALLOWED_ORIGINS
+      - key: ALLOWED_ORIGINS
         value: https://stockupmanager.com,https://www.stockupmanager.com,https://kdev-lab.github.io

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Solved — Stock Up Manager</title>
+<meta name="description" content="Right now, your stockroom is a black hole. See why invisible stock costs operations teams time and money — and how Stock Up Manager makes it visible.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 7L12 3L21 7V17L12 21L3 17V7Z%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M3 7L12 11L21 7%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M12 11V21%22 stroke=%22%231a73e8%22 stroke-width=%222%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 7L12 3L21 7V17L12 21L3 17V7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M3 7L12 11L21 7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M12 11V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Stock Up Manager
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="problem.html" class="active">Problem Solved</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="reporting.html">Reporting</a>
+      <a href="why-switch.html">Why Switch</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="contact.html" class="btn btn-primary btn-nav">Book a Walkthrough</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="problem.html" class="active">Problem Solved</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="reporting.html">Reporting</a>
+    <a href="why-switch.html">Why Switch</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Book a Walkthrough</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="page-banner">
+    <div class="section-inner">
+      <p class="breadcrumb reveal"><a href="index.html">Home</a> / Problem Solved</p>
+      <p class="eyebrow reveal">Problem Solved</p>
+      <h1 class="reveal">Right now, your stockroom is a black hole.</h1>
+      <p class="section-lede reveal">
+        Every "I thought we had it in stock" moment costs downtime, a scramble to substitute
+        items, and sometimes a delayed job. It isn't a people problem — it's a visibility
+        problem. Stock goes missing, nobody writes it down, and the first anyone hears about
+        it is when someone reaches for it and it's gone.
+      </p>
+    </div>
+    <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0,40 C240,90 480,0 720,20 C960,40 1200,100 1440,50 L1440,100 L0,100 Z"></path>
+    </svg>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="compare-grid reveal">
+        <div class="compare-card compare-bad">
+          <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Invisible</h3>
+          <ul>
+            <li>No one knows what's on the shelf until it's too late.</li>
+            <li>Stock gets grabbed with no record of who took it, or when.</li>
+            <li>Reordering happens in a panic, often with rush shipping fees.</li>
+            <li>Low stock is only noticed after the job has already stalled.</li>
+          </ul>
+        </div>
+        <div class="compare-card compare-good">
+          <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Visible</h3>
+          <ul>
+            <li>Every scan updates the shelf count instantly, for everyone.</li>
+            <li>Every deduction has a name and a timestamp attached.</li>
+            <li>Low-stock alerts fire before the shelf actually runs dry.</li>
+            <li>Reordering happens on your schedule — not in a panic.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="familiar-grid reveal">
+        <div class="familiar-card">
+          <p class="eyebrow">Sound familiar?</p>
+          <p>A critical item runs out mid-job and everything grinds to a halt.</p>
+          <p class="familiar-solution">
+            <span class="solution-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Low-stock alerts fire before the shelf runs dry, so a replacement is already on the way.
+          </p>
+        </div>
+        <div class="familiar-card">
+          <p class="eyebrow">Sound familiar?</p>
+          <p>Nobody remembers who took the last of a key item.</p>
+          <p class="familiar-solution">
+            <span class="solution-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Every deduction is signed with a PIN, so it's always clear who took what, and when.
+          </p>
+        </div>
+        <div class="familiar-card">
+          <p class="eyebrow">Sound familiar?</p>
+          <p>A team gets restocked with the wrong supplies, again.</p>
+          <p class="familiar-solution">
+            <span class="solution-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            One shared, live count means everyone's working from the same numbers — no more guessing.
+          </p>
+        </div>
+      </div>
+
+      <blockquote class="pull-quote reveal">
+        "Right now, your inventory is invisible. Stock Up Manager makes it visible."
+      </blockquote>
+
+      <div class="callout callout-feature reveal">
+        <span class="callout-icon-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h11v9H3V7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 10h4l3 3v3h-7v-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="18" r="1.6" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        <div>
+          <strong>Go one step further: alert your suppliers automatically.</strong>
+          Low-stock alerts don't have to stop at your team. If required, they can be routed
+          straight to your suppliers too, so replacement stock is already on its way before
+          anyone's even noticed the gap on the shelf.
+        </div>
+      </div>
+
+      <div class="callout callout-icon reveal">
+        <span class="callout-icon-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3h9l4 4v14H6V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 11h7M9 15h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <div>
+          <strong>Job numbers on every deduction.</strong>
+          In Checkout Mode, staff can tag each deduction with a job number, so stock use is
+          tracked against the job it went to — not just the person who scanned it.
+        </div>
+      </div>
+
+      <div class="next-page reveal">
+        <a href="how-it-works.html">Next: How It Works →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Stock Up Manager. All rights reserved.</span>
+    <span>Have a question? <button class="footer-chat-link" id="footer-chat-open">Ask our assistant</button></span>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel">
+    <span class="chat-launcher-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    <span class="chat-launcher-label">Ask about Stock Up Manager</span>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Product assistant chat" hidden>
+    <div class="chat-panel-header">
+      <div>
+        <strong>Stock Up Manager Assistant</strong>
+        <span>Ask anything about the product</span>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Close chat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-message chat-message-bot">
+        Hi! I'm the Stock Up Manager assistant. Ask me how scanning, syncing, PINs, or reporting
+        work — or how it could fit your stockroom.
+      </div>
+    </div>
+
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button class="chat-suggestion" data-q="How does the Google Sheets sync work?">Google Sheets sync?</button>
+      <button class="chat-suggestion" data-q="What hardware do I need to scan barcodes?">What hardware do I need?</button>
+      <button class="chat-suggestion" data-q="How do low-stock alerts work?">Low-stock alerts?</button>
+    </div>
+
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your question…" maxlength="600" autocomplete="off" aria-label="Your question">
+      <button type="submit" class="chat-send" id="chat-send" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

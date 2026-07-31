@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Up Manager — Stop Counting. Start Scanning.</title>
+<meta name="description" content="A native Mac and Android app that turns any tablet or desktop into a barcode-driven stock control station. Scan, deduct, and sync straight back to Google Sheets.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 7L12 3L21 7V17L12 21L3 17V7Z%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M3 7L12 11L21 7%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M12 11V21%22 stroke=%22%231a73e8%22 stroke-width=%222%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 7L12 3L21 7V17L12 21L3 17V7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M3 7L12 11L21 7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M12 11V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Stock Up Manager
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="problem.html">Problem Solved</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="reporting.html">Reporting</a>
+      <a href="why-switch.html">Why Switch</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="contact.html" class="btn btn-primary btn-nav">Book a Walkthrough</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="problem.html">Problem Solved</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="reporting.html">Reporting</a>
+    <a href="why-switch.html">Why Switch</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Book a Walkthrough</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-banner">
+      <div class="section-inner hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Native App — Mac &amp; Android</p>
+          <h1>Stop counting.<br>Start scanning.</h1>
+          <p class="hero-lede">
+            A native Mac and Android app that turns any tablet or desktop into a barcode-driven
+            stock control station. Scan with the built-in camera or any barcode scanner, deduct
+            instantly, and see exactly who moved what — synced straight back to the Google Sheet
+            your team already trusts.
+          </p>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary">Book a Walkthrough</a>
+            <a href="how-it-works.html" class="btn btn-ghost">See How It Works</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="screenshot-toggle" role="group" aria-label="Preview app theme">
+            <span class="screenshot-toggle-label">Preview:</span>
+            <button type="button" class="screenshot-toggle-btn active" data-theme="dark" aria-pressed="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.5A9 9 0 1111.5 3a7 7 0 009.5 9.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              Dark
+            </button>
+            <button type="button" class="screenshot-toggle-btn" data-theme="light" aria-pressed="false">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Light
+            </button>
+          </div>
+          <div class="screenshot-frame">
+            <img id="app-screenshot" class="app-screenshot" src="app-screenshot-dark.png" alt="Stock Up Manager app screenshot" width="1417" height="737">
+          </div>
+        </div>
+      </div>
+
+      <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0,40 C240,90 480,0 720,20 C960,40 1200,100 1440,50 L1440,100 L0,100 Z"></path>
+      </svg>
+    </div>
+
+    <div class="section-inner">
+      <div class="hero-features reveal">
+        <div class="hero-feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span>Mac &amp; Android</span>
+        </div>
+        <div class="hero-feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8V6a2 2 0 012-2h2M4 16v2a2 2 0 002 2h2M20 8V6a2 2 0 00-2-2h-2M20 16v2a2 2 0 01-2 2h-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span>Camera or Any Scanner</span>
+        </div>
+        <div class="hero-feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span>Per-User PIN Tracking</span>
+        </div>
+        <div class="hero-feature-card">
+          <span class="feature-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 20V10M12 20V4M19 20v-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span>Built-In Reporting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPIC CARDS -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="eyebrow reveal">Explore</p>
+      <h2 class="reveal">One app, four things worth knowing.</h2>
+      <p class="section-lede reveal">
+        Everything below is pulled straight from how operations teams actually run Stock Up
+        Manager day to day. Pick a topic, or just ask the assistant in the corner.
+      </p>
+
+      <div class="topics-grid reveal">
+        <a class="topic-card" href="problem.html">
+          <span class="topic-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Problem Solved</h3>
+          <p>Why stock goes invisible, and what that actually costs a team.</p>
+          <span class="topic-link">Read more →</span>
+        </a>
+        <a class="topic-card" href="how-it-works.html">
+          <span class="topic-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+          <h3>How It Works</h3>
+          <p>Set the quantity, scan the barcode, and watch it sync — in about a second.</p>
+          <span class="topic-link">Read more →</span>
+        </a>
+        <a class="topic-card" href="reporting.html">
+          <span class="topic-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 20V10M12 20V4M19 20v-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <h3>Reporting &amp; Accountability</h3>
+          <p>Every scan lands in the Google Sheet you already trust, with reports built in.</p>
+          <span class="topic-link">Read more →</span>
+        </a>
+        <a class="topic-card" href="why-switch.html">
+          <span class="topic-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12a8 8 0 0113.66-5.66M20 12a8 8 0 01-13.66 5.66" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Why Teams Switch</h3>
+          <p>Built to fit the operation you already run — nothing new to learn.</p>
+          <span class="topic-link">Read more →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINI CTA -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="cta-box reveal">
+        <div>
+          <h3>Let's put it on your floor.</h3>
+          <p>Book a walkthrough with your own stock and see the scan-to-sync workflow live on Mac or Android.</p>
+        </div>
+        <a href="contact.html" class="btn" style="background:#ffffff;color:var(--accent);">Get in touch →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Stock Up Manager. All rights reserved.</span>
+    <span>Have a question? <button class="footer-chat-link" id="footer-chat-open">Ask our assistant</button></span>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel">
+    <span class="chat-launcher-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    <span class="chat-launcher-label">Ask about Stock Up Manager</span>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Product assistant chat" hidden>
+    <div class="chat-panel-header">
+      <div>
+        <strong>Stock Up Manager Assistant</strong>
+        <span>Ask anything about the product</span>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Close chat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-message chat-message-bot">
+        Hi! I'm the Stock Up Manager assistant. Ask me how scanning, syncing, PINs, or reporting
+        work — or how it could fit your stockroom.
+      </div>
+    </div>
+
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button class="chat-suggestion" data-q="How does the Google Sheets sync work?">Google Sheets sync?</button>
+      <button class="chat-suggestion" data-q="What hardware do I need to scan barcodes?">What hardware do I need?</button>
+      <button class="chat-suggestion" data-q="How do low-stock alerts work?">Low-stock alerts?</button>
+    </div>
+
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your question…" maxlength="600" autocomplete="off" aria-label="Your question">
+      <button type="submit" class="chat-send" id="chat-send" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

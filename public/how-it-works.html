@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Stock Up Manager</title>
+<meta name="description" content="One scan, three things happen: set the quantity, scan the barcode, and it deducts and syncs to Google Sheets in about a second.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 7L12 3L21 7V17L12 21L3 17V7Z%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M3 7L12 11L21 7%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M12 11V21%22 stroke=%22%231a73e8%22 stroke-width=%222%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 7L12 3L21 7V17L12 21L3 17V7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M3 7L12 11L21 7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M12 11V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Stock Up Manager
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="problem.html">Problem Solved</a>
+      <a href="how-it-works.html" class="active">How It Works</a>
+      <a href="reporting.html">Reporting</a>
+      <a href="why-switch.html">Why Switch</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="contact.html" class="btn btn-primary btn-nav">Book a Walkthrough</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="problem.html">Problem Solved</a>
+    <a href="how-it-works.html" class="active">How It Works</a>
+    <a href="reporting.html">Reporting</a>
+    <a href="why-switch.html">Why Switch</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Book a Walkthrough</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="page-banner">
+    <div class="section-inner">
+      <p class="breadcrumb reveal"><a href="index.html">Home</a> / How It Works</p>
+      <p class="eyebrow reveal">How It Works</p>
+      <h1 class="reveal">One scan. Three things happen.</h1>
+      <p class="section-lede reveal">
+        Stock Up Manager replaces clipboard counts with a scan-first workflow: set a quantity,
+        scan a barcode with the camera already in your hand, and the deduction, the user
+        attribution, and the spreadsheet update all happen in the same motion. It takes less
+        time than it does to grab a pen.
+      </p>
+    </div>
+    <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0,40 C240,90 480,0 720,20 C960,40 1200,100 1440,50 L1440,100 L0,100 Z"></path>
+    </svg>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="steps-grid compact reveal">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Set the quantity</h3>
+            <p>Leave it blank and it defaults to 1, so the line never stalls.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Scan the barcode</h3>
+            <p>Built-in camera, or any USB or Bluetooth scanner you already own.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Deduct &amp; sync</h3>
+            <p>Updates instantly, and auto-saves to Google Sheets in about a second.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-row reveal">
+        <div class="check-item">
+          <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>Scan with the camera you already have, or any barcode scanner.</strong> The tablet or phone's camera reads barcodes instantly, and any USB or Bluetooth scanner you already own works too.</p>
+        </div>
+        <div class="check-item">
+          <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>Every deduction has a name on it.</strong> Staff sign in with their own PIN, so each scan is tracked by user.</p>
+        </div>
+        <div class="check-item">
+          <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>Counts stay trustworthy.</strong> Quantity is never allowed to go negative.</p>
+        </div>
+        <div class="check-item">
+          <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>Multiple barcodes per item.</strong> Comma-separated codes are recognized automatically as scanners send them.</p>
+        </div>
+      </div>
+
+      <p class="eyebrow reveal" style="margin-top:3rem;">Google Workspace Integration</p>
+      <h2 class="reveal">Built on the Google Sheet you already trust.</h2>
+      <p class="section-lede reveal integration-copy">
+        No new database to learn, no migration, and no separate login. Stock Up Manager reads
+        and writes straight to a Google Sheet — the same tool your team already opens every
+        day — so the backend is one IT and finance already trust.
+      </p>
+
+      <div class="integration-visual reveal" aria-hidden="true">
+        <div class="mock-photo-frame">
+          <img class="mock-photo" src="tablet-mockup.png" alt="" width="2442" height="1575">
+        </div>
+
+        <div class="integration-arrow">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Syncs in about a second</span>
+        </div>
+
+        <div class="sheet-window">
+          <div class="sheet-titlebar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            <span class="sheet-url">sheets.google.com</span>
+          </div>
+          <div class="sheet-toolbar">
+            <span class="sheet-doc-title">Stock Up Manager Sync</span>
+            <span class="sheet-live-badge">Synced 2s ago</span>
+          </div>
+          <div class="sheet-grid">
+            <div class="sheet-row sheet-row-head">
+              <span></span><span>Item</span><span>SKU</span><span>Qty</span><span>Restock</span><span>Location</span>
+            </div>
+            <div class="sheet-row"><span>1</span><span>Packing Boxes</span><span>PKG0001</span><span>84</span><span>20</span><span>Shelf A2</span></div>
+            <div class="sheet-row"><span>2</span><span>Shipping Labels</span><span>PKG0002</span><span>6</span><span>15</span><span>Shelf A3</span></div>
+            <div class="sheet-row sheet-row-warn"><span>3</span><span>Packing Tape</span><span>PKG0003</span><span>3</span><span>10</span><span>Shelf B1</span></div>
+            <div class="sheet-row"><span>4</span><span>Printer Paper</span><span>PKG0004</span><span>40</span><span>10</span><span>Office</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-row reveal">
+        <div class="check-item">
+          <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>Nothing new to learn.</strong> Your team already knows Google Sheets — there's no separate dashboard or app to train anyone on.</p>
+        </div>
+        <div class="check-item">
+          <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>Open it anywhere.</strong> Phone, laptop, or tablet — the same way you already share sheets today.</p>
+        </div>
+      </div>
+
+      <div class="next-page reveal">
+        <a href="reporting.html">Next: Reporting &amp; Accountability →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Stock Up Manager. All rights reserved.</span>
+    <span>Have a question? <button class="footer-chat-link" id="footer-chat-open">Ask our assistant</button></span>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel">
+    <span class="chat-launcher-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    <span class="chat-launcher-label">Ask about Stock Up Manager</span>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Product assistant chat" hidden>
+    <div class="chat-panel-header">
+      <div>
+        <strong>Stock Up Manager Assistant</strong>
+        <span>Ask anything about the product</span>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Close chat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-message chat-message-bot">
+        Hi! I'm the Stock Up Manager assistant. Ask me how scanning, syncing, PINs, or reporting
+        work — or how it could fit your stockroom.
+      </div>
+    </div>
+
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button class="chat-suggestion" data-q="How does the Google Sheets sync work?">Google Sheets sync?</button>
+      <button class="chat-suggestion" data-q="What hardware do I need to scan barcodes?">What hardware do I need?</button>
+      <button class="chat-suggestion" data-q="How do low-stock alerts work?">Low-stock alerts?</button>
+    </div>
+
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your question…" maxlength="600" autocomplete="off" aria-label="Your question">
+      <button type="submit" class="chat-send" id="chat-send" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

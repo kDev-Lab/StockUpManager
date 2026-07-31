@@ -1,0 +1,17 @@
+{
+  "name": "stock-up-manager-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing website and AI product Q&A widget for Stock Up Manager",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0"
+  }
+}

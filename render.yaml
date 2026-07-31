@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: stock-up-manager-light-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: https://stockupmanager.com,https://www.stockupmanager.com

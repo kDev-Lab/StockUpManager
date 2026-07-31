@@ -26,7 +26,7 @@ If a question falls outside these facts (pricing specifics not listed, integrati
 
 === PRODUCT FACTS:
 
-
+COST PRICE we don't believe in monthly fees - the price is region dependent but will always be a one off cost so you own the software and all future updates of the version you are running - get in touch today for the full price list.
 Having a dedicated inventory app like **Stock Up Manager** fundamentally changes how a business operates, shifting you from manual, error-prone recordkeeping to an efficient, automated powerhouse.
 Here is a deep dive into every major benefit of implementing software built with these core capabilities:
 ## ⚡ 1. Rapid Stock Updates (Scan In & Out)

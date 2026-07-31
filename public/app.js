@@ -3,7 +3,7 @@
 // e.g. 'https://stock-up-manager-api.onrender.com'. Leave blank if the same
 // server serves both the pages and /api/chat (e.g. local dev, or Render
 // hosting everything together).
-const API_BASE = '';
+const API_BASE = 'https://stock-up-manager-light-api.onrender.com';
 
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();

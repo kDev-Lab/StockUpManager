@@ -90,17 +90,28 @@ const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
   : DEFAULT_ALLOWED_ORIGINS;
 const LOCALHOST_ORIGIN = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
+function isSameHost(origin, req) {
+  try {
+    return new URL(origin).host === req.headers.host;
+  } catch {
+    return false;
+  }
+}
+
+// Using the (req, callback) form (rather than passing an options object
+// directly) so we can compare the Origin header against the request's own
+// host — this lets same-origin requests always work no matter what domain
+// this server happens to be running on (e.g. a Render preview URL before a
+// custom domain is attached), without having to list every such domain.
 app.use(
-  cors({
-    origin(origin, callback) {
-      // Allow same-origin/non-browser requests (no Origin header), any localhost port
-      // (so local dev/preview copies always work regardless of which port they run on),
-      // and anything on the production allowlist.
-      if (!origin || LOCALHOST_ORIGIN.test(origin) || ALLOWED_ORIGINS.includes(origin)) {
-        return callback(null, true);
-      }
-      callback(new Error('Not allowed by CORS'));
-    },
+  cors((req, callback) => {
+    const origin = req.header('Origin');
+    const allowed =
+      !origin ||
+      LOCALHOST_ORIGIN.test(origin) ||
+      ALLOWED_ORIGINS.includes(origin) ||
+      isSameHost(origin, req);
+    callback(null, { origin: allowed });
   })
 );
 
@@ -161,6 +172,14 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     console.error('Chat error:', err);
     res.status(500).json({ error: 'Something went wrong on our end. Please try again in a moment.' });
   }
+});
+
+// Catches errors from any middleware above (e.g. a rejected CORS check) and
+// returns JSON instead of Express's default HTML error page, so the chat
+// widget can always parse the response and show a real message.
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ error: 'Something went wrong on our end. Please try again in a moment.' });
 });
 
 app.listen(PORT, () => {

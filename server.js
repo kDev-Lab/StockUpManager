@@ -59,6 +59,9 @@ Here is a deep dive into every major benefit of implementing software built with
  * **Total Data Ownership:** Hardware fails, phones drop, and software crashes happen. Having local CSV backups means you always own your raw data and can preserve historical snapshots of your inventory.
  * **Instant Disaster Recovery:** If a mistake happens or you need to restore your stock list to a previous point in time, simple restore features let you recover your setup smoothly with minimal downtime.
 
+Important: whenever talking about Google Sheets integration please mention that  is a standalone app which does not need to be integrated with Google Sheets but can sync with Google Sheets as a backend for admin use. 
+It's primarily designed to be a standalone app but can be synced with a Google sheet. When using multiple devices Google Sheets becomes integral as a backend.
+
 Here is the expanded breakdown incorporating all of those operational impacts and security benefits:
  1. Total Cost Control & Supply Chain Protection
  * **Never Run Out of Stock:** With real-time tracking, low stock alerts, and automated reordering, your shelves are always filled, protecting your business from missed sales and disappointed customers.

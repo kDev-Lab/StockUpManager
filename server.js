@@ -4,19 +4,22 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-const Anthropic = require('@anthropic-ai/sdk');
+const { GoogleGenAI } = require('@google/genai');
 
-if (!process.env.ANTHROPIC_API_KEY) {
-  console.error('Missing ANTHROPIC_API_KEY. Set it in your .env file before starting the server.');
+if (!process.env.GEMINI_API_KEY) {
+  console.error('Missing GEMINI_API_KEY. Set it in your .env file before starting the server.');
   process.exit(1);
 }
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const CHAT_MODEL = 'claude-haiku-4-5-20251001';
+// Current stable Gemini Flash model as of writing. Gemini model IDs are
+// fixed strings the API matches exactly (not living aliases like "latest"),
+// so if Google ships a newer default model later, update this constant.
+const CHAT_MODEL = 'gemini-3.5-flash-lite';
 const MAX_MESSAGE_LENGTH = 600;
 const MAX_HISTORY_TURNS = 6; // user+assistant pairs kept for context
 
@@ -24,8 +27,7 @@ const SYSTEM_PROMPT = `You are the product assistant embedded on the Stock Up Ma
 
 If a question falls outside these facts (pricing specifics not listed, integrations not mentioned, unrelated topics, or anything you're not sure about), never guess. Say plainly that you don't have that detail, then warmly encourage them to reach out directly — and always include the actual contact info in that same reply: info@stockupmanager.com or 021 120 3807 (or invite them to book a walkthrough). Do this every single time you're unsure, not just occasionally.
 
-=== PRODUCT FACTS:
-
+=== PRODUCT FACTS: 
 COST PRICE we don't believe in monthly fees - the price is region dependent but will always be a one off cost so you own the software and all future updates of the version you are running - get in touch today for the full price list.
 Having a dedicated inventory app like **Stock Up Manager** fundamentally changes how a business operates, shifting you from manual, error-prone recordkeeping to an efficient, automated powerhouse.
 Here is a deep dive into every major benefit of implementing software built with these core capabilities:
@@ -75,7 +77,9 @@ Here is the expanded breakdown incorporating all of those operational impacts an
  5. True Mobile Independence (Standalone App)
  * **Native Performance:** Unlike clunky, slow Apps Script web pages that rely on web browser redirects, this is a fully standalone mobile application built for speed, stability, and offline readiness.
  * **Seamless Floor Usability:** Enjoy smooth performance, instant camera barcode scanning, and a crisp user interface designed specifically for rapid physical inventory work on handheld devices.
+
  STOCK UP MANAGER ===
+
 
 What it is: A native Mac and Android app that turns any tablet or desktop into a barcode-driven stock control station. Scan with the built-in camera or any USB/Bluetooth barcode scanner, deduct stock instantly, and see exactly who moved what. Everything syncs straight back to the Google Sheet the team already uses — no new dashboard to learn.
 
@@ -203,20 +207,31 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
       return res.status(400).json({ error: 'Message is too long.' });
     }
 
-    const messages = [...sanitizeHistory(history), { role: 'user', content: message.trim() }];
+    const turns = [...sanitizeHistory(history), { role: 'user', content: message.trim() }];
 
-    const response = await anthropic.messages.create({
+    // Gemini's Content schema differs from Anthropic's: the assistant's role
+    // is called "model" (not "assistant"), and each turn's text sits inside
+    // a parts array rather than being a plain string.
+    const contents = turns.map((turn) => ({
+      role: turn.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: turn.content }],
+    }));
+
+    const response = await genAI.models.generateContent({
       model: CHAT_MODEL,
-      max_tokens: 350,
-      system: SYSTEM_PROMPT,
-      messages,
+      contents,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        // Flash-Lite doesn't use hidden "thinking" tokens by default (unlike
+        // Gemini 3.6 Flash, which drew up to ~450 tokens per reply just for
+        // invisible reasoning against this same budget, occasionally cutting
+        // replies off mid-sentence). This ceiling is just a generous safety
+        // margin — real replies land well under it.
+        maxOutputTokens: 2048,
+      },
     });
 
-    const reply = response.content
-      .filter((block) => block.type === 'text')
-      .map((block) => block.text)
-      .join('\n')
-      .trim();
+    const reply = (response.text || '').trim();
 
     res.json({ reply: reply || "Sorry, I didn't catch that — could you rephrase?" });
   } catch (err) {

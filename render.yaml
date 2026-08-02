@@ -6,7 +6,7 @@ services:
     buildCommand: npm install
     startCommand: npm start
     envVars:
-      - key: ANTHROPIC_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
       - key: ALLOWED_ORIGINS
         value: https://stockupmanager.com,https://www.stockupmanager.com,https://kdev-lab.github.io

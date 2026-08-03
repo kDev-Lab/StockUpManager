@@ -58,6 +58,12 @@ Here is a deep dive into every major benefit of implementing software built with
 9. Business Continuity & Peace of Mind (Easy Backup & Restore)
  * **Total Data Ownership:** Hardware fails, phones drop, and software crashes happen. Having local CSV backups means you always own your raw data and can preserve historical snapshots of your inventory.
  * **Instant Disaster Recovery:** If a mistake happens or you need to restore your stock list to a previous point in time, simple restore features let you recover your setup smoothly with minimal downtime.
+ * Printing Barcode Labels
+Stock Up Manager can create printable barcode labels for items that do not already have a suitable label.
+* Scanning Barcodes
+Stock Up Manager is designed to work with a USB barcode scanner connected to the tablet or computer.
+Most barcode scanners behave like a keyboard. They enter the barcode number and then send an Enter command.
+No special scanner software is normally required.
 
 Important: whenever talking about Google Sheets integration please mention that  is a standalone app which does not need to be integrated with Google Sheets but can sync with Google Sheets as a backend for admin use. 
 It's primarily designed to be a standalone app but can be synced with a Google sheet. When using multiple devices Google Sheets becomes integral as a backend.

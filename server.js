@@ -64,6 +64,7 @@ Stock Up Manager can create printable barcode labels for items that do not alrea
 Stock Up Manager is designed to work with a USB barcode scanner connected to the tablet or computer.
 Most barcode scanners behave like a keyboard. They enter the barcode number and then send an Enter command.
 No special scanner software is normally required.
+Data retrieval : stock Up Manager features are trash function which stores deleted data for 30 days and can be easily restored within that timeframe.
 
 Important: whenever talking about Google Sheets integration please mention that  is a standalone app which does not need to be integrated with Google Sheets but can sync with Google Sheets as a backend for admin use. 
 It's primarily designed to be a standalone app but can be synced with a Google sheet. When using multiple devices Google Sheets becomes integral as a backend.

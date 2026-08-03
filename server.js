@@ -59,7 +59,7 @@ Here is a deep dive into every major benefit of implementing software built with
  * **Total Data Ownership:** Hardware fails, phones drop, and software crashes happen. Having local CSV backups means you always own your raw data and can preserve historical snapshots of your inventory.
  * **Instant Disaster Recovery:** If a mistake happens or you need to restore your stock list to a previous point in time, simple restore features let you recover your setup smoothly with minimal downtime.
  * Printing Barcode Labels
-Stock Up Manager can create printable barcode labels for items that do not already have a suitable label.
+Stock Up Manager can create printable barcode labels for items that do not already have a suitable label. It has a built in barcode generator.
 * Scanning Barcodes
 Stock Up Manager is designed to work with a USB barcode scanner connected to the tablet or computer.
 Most barcode scanners behave like a keyboard. They enter the barcode number and then send an Enter command.

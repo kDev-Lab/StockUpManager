@@ -951,6 +951,32 @@ a { color: inherit; }
 }
 .next-page a:hover { border-color: var(--accent); color: var(--accent); }
 
+/* ---------- BARCODE SECTION ---------- */
+.barcode-section { background: var(--surface); border-top: 1px solid var(--border); }
+
+.barcode-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.barcode-image img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .barcode-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .barcode-image { order: -1; }
+}
+
 /* ---------- reveal animation ---------- */
 .reveal {
   opacity: 0;

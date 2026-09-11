@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout & Invoicing — Stock Up Manager</title>
+<meta name="description" content="Turn any device into a checkout terminal. Scan items, build invoices, attach job numbers, print on the spot — all while keeping your inventory up to date.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M3 7L12 3L21 7V17L12 21L3 17V7Z%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M3 7L12 11L21 7%22 fill=%22none%22 stroke=%22%231a73e8%22 stroke-width=%222%22 stroke-linejoin=%22round%22/><path d=%22M12 11V21%22 stroke=%22%231a73e8%22 stroke-width=%222%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ── checkout page extras ── */
+  .checkout-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .checkout-mockup {
+    background: #f2f6fc;
+    border: 1px solid rgba(20,46,90,0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(20,46,90,0.10);
+  }
+
+  .mockup-titlebar {
+    background: #fff;
+    border-bottom: 1px solid rgba(20,46,90,0.10);
+    padding: 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #0f2545;
+  }
+
+  .mockup-titlebar-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .mockup-titlebar-actions span {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #1a73e8;
+    background: rgba(26,115,232,0.08);
+    border: 1px solid rgba(26,115,232,0.2);
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+
+  .mockup-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .mockup-search {
+    background: #fff;
+    border: 1.5px solid #1a73e8;
+    border-radius: 8px;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.8rem;
+    color: #8b9ab8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mockup-item {
+    background: #fff;
+    border: 1px solid rgba(20,46,90,0.10);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+  }
+
+  .mockup-item-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0f2545;
+    margin-bottom: 0.35rem;
+  }
+
+  .mockup-item-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .mockup-chip {
+    font-size: 0.68rem;
+    background: #f2f6fc;
+    border: 1px solid rgba(20,46,90,0.10);
+    border-radius: 5px;
+    padding: 2px 7px;
+    color: #55688a;
+  }
+
+  .mockup-totals {
+    background: #fff;
+    border: 1px solid rgba(20,46,90,0.10);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .mockup-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #55688a;
+    padding: 2px 0;
+  }
+
+  .mockup-total-row.grand {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #0f2545;
+    border-top: 1px solid rgba(20,46,90,0.10);
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+  }
+
+  .mockup-total-row.grand span:last-child { color: #1a73e8; }
+
+  .mockup-actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .mockup-btn {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid rgba(20,46,90,0.15);
+    color: #0f2545;
+    background: #fff;
+  }
+
+  .mockup-btn.primary {
+    background: #1a73e8;
+    color: #fff;
+    border-color: #1a73e8;
+  }
+
+  /* invoice mockup */
+  .invoice-mockup {
+    background: #fff;
+    border: 1px solid rgba(20,46,90,0.12);
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(20,46,90,0.08);
+    max-width: 420px;
+  }
+
+  .invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+  }
+
+  .invoice-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f2545;
+    letter-spacing: -0.02em;
+  }
+
+  .invoice-logo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1a73e8;
+    border: 1.5px solid #1a73e8;
+    border-radius: 6px;
+    padding: 4px 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .invoice-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.78rem;
+    color: #55688a;
+  }
+
+  .invoice-meta-box {
+    background: #f2f6fc;
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    color: #55688a;
+    text-align: right;
+  }
+
+  .invoice-meta-box strong { display: block; color: #0f2545; font-size: 0.82rem; }
+
+  .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+  .invoice-table th {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #55688a;
+    background: #f2f6fc;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  .invoice-table th:last-child, .invoice-table td:last-child { text-align: right; }
+  .invoice-table td {
+    font-size: 0.78rem;
+    padding: 7px 8px;
+    border-bottom: 1px solid rgba(20,46,90,0.07);
+    color: #0f2545;
+    vertical-align: top;
+  }
+  .invoice-table td small { display: block; color: #8b9ab8; font-size: 0.68rem; }
+
+  .invoice-subtotals {
+    background: #f2f6fc;
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-left: auto;
+    width: 55%;
+  }
+
+  .invoice-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #55688a;
+    padding: 2px 0;
+  }
+
+  .invoice-subtotal-row.total {
+    font-weight: 700;
+    color: #0f2545;
+    border-top: 1px solid rgba(20,46,90,0.12);
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  /* feature cards */
+  .checkout-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .checkout-feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .checkout-feature-card:hover {
+    border-color: rgba(26,115,232,0.3);
+    box-shadow: 0 4px 20px rgba(26,115,232,0.08);
+  }
+
+  .checkout-feature-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .checkout-feature-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .checkout-feature-card p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+
+  /* workflow steps */
+  .checkout-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+    position: relative;
+  }
+
+  .checkout-steps::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .checkout-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .checkout-step-num {
+    width: 44px;
+    height: 44px;
+    background: var(--accent-grad);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin: 0 auto 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .checkout-step h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .checkout-step p {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  /* who it's for strip */
+  .who-strip {
+    background: var(--surface-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .who-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+  }
+
+  .who-card-emoji { font-size: 1.8rem; margin-bottom: 0.75rem; display: block; }
+  .who-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+  .who-card p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.55; }
+
+  @media (max-width: 900px) {
+    .checkout-hero-grid { grid-template-columns: 1fr; }
+    .checkout-features { grid-template-columns: 1fr 1fr; }
+    .checkout-steps { grid-template-columns: 1fr 1fr; }
+    .checkout-steps::before { display: none; }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .checkout-features { grid-template-columns: 1fr; }
+    .checkout-steps { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr; }
+    .invoice-subtotals { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 7L12 3L21 7V17L12 21L3 17V7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M3 7L12 11L21 7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M12 11V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Stock Up Manager
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="problem.html">Problem Solved</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="reporting.html">Reporting</a>
+      <a href="why-switch.html">Why Switch</a>
+      <a href="checkout.html" class="active">Checkout &amp; Invoicing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="contact.html" class="btn btn-primary btn-nav">Book a Walkthrough</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="problem.html">Problem Solved</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="reporting.html">Reporting</a>
+    <a href="why-switch.html">Why Switch</a>
+    <a href="checkout.html" class="active">Checkout &amp; Invoicing</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Book a Walkthrough</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- BANNER -->
+  <section class="page-banner">
+    <div class="section-inner">
+      <p class="breadcrumb reveal"><a href="index.html">Home</a> / Checkout &amp; Invoicing</p>
+      <p class="eyebrow reveal">For Shop Owners &amp; Stallholders</p>
+      <h1 class="reveal">Serve customers. Print invoices.<br>Never lose track of stock.</h1>
+      <p class="section-lede reveal" style="color:rgba(255,255,255,0.85); max-width:560px; margin-top:1rem;">
+        Turn any tablet or desktop into a checkout terminal. Scan items, build a cart, review the total, attach a job number, and print or share an invoice — all while your inventory updates automatically in the background.
+      </p>
+    </div>
+    <svg class="wave-divider" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,40 C240,90 480,0 720,20 C960,40 1200,100 1440,50 L1440,100 L0,100 Z"></path>
+    </svg>
+  </section>
+
+  <!-- CHECKOUT DEMO -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="checkout-hero-grid">
+        <div>
+          <p class="eyebrow reveal">Checkout Mode</p>
+          <h2 class="reveal">Add items, review, done.</h2>
+          <p class="section-lede reveal">
+            Scan a barcode or search by SKU to add items to the cart. Adjust quantities, see the running total with GST calculated automatically, then choose to save, share, or print — in one tap.
+          </p>
+          <div class="check-list reveal" style="margin-top:1.5rem;">
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Scan or type.</strong> Use a barcode scanner, your device camera, or just type a SKU or product name.</p>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Review before committing.</strong> See the full cart with per-item totals and GST before saving anything.</p>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Three ways to finish.</strong> Save to records, save and share digitally, or save and print on the spot.</p>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Stock updates automatically.</strong> Every checkout deducts from your inventory in real time — no double entry.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHECKOUT MOCKUP -->
+        <div class="checkout-mockup reveal">
+          <div class="mockup-titlebar">
+            <span>Checkout Mode</span>
+            <div class="mockup-titlebar-actions">
+              <span>Receipts Folder</span>
+              <span>Company Details</span>
+            </div>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-search">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b9ab8" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+              Scan or type barcode…
+            </div>
+            <div class="mockup-item">
+              <div class="mockup-item-name">Ink Yellow — Sublimation</div>
+              <div class="mockup-item-meta">
+                <span class="mockup-chip">SKU PRI0002</span>
+                <span class="mockup-chip">$29.95</span>
+                <span class="mockup-chip">Qty 1</span>
+                <span class="mockup-chip">Total $29.95</span>
+              </div>
+            </div>
+            <div class="mockup-item">
+              <div class="mockup-item-name">Maintenance Box — Sublimation</div>
+              <div class="mockup-item-meta">
+                <span class="mockup-chip">SKU PRI0003</span>
+                <span class="mockup-chip">$45.95</span>
+                <span class="mockup-chip">Qty 2</span>
+                <span class="mockup-chip">Total $91.90</span>
+              </div>
+            </div>
+            <div class="mockup-item">
+              <div class="mockup-item-name">Ink Black — Sublimation</div>
+              <div class="mockup-item-meta">
+                <span class="mockup-chip">SKU PRI0004</span>
+                <span class="mockup-chip">$27.50</span>
+                <span class="mockup-chip">Qty 1</span>
+                <span class="mockup-chip">Total $27.50</span>
+              </div>
+            </div>
+            <div class="mockup-totals">
+              <div class="mockup-total-row"><span>Subtotal</span><span>$149.35</span></div>
+              <div class="mockup-total-row"><span>GST (15%)</span><span>$22.40</span></div>
+              <div class="mockup-total-row grand"><span>Grand Total</span><span>$171.75</span></div>
+            </div>
+            <div class="mockup-actions-row">
+              <div class="mockup-btn">Save</div>
+              <div class="mockup-btn">Save &amp; Share</div>
+              <div class="mockup-btn primary">Save &amp; Print</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVOICE SECTION -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="checkout-hero-grid">
+
+        <!-- INVOICE MOCKUP -->
+        <div class="invoice-mockup reveal">
+          <div class="invoice-header">
+            <div class="invoice-title">INVOICE</div>
+            <div class="invoice-logo">YOUR LOGO</div>
+          </div>
+          <div class="invoice-meta">
+            <div>
+              <strong style="display:block; font-size:0.78rem; color:#0f2545; margin-bottom:2px;">ISSUED BY:</strong>
+              <strong style="font-size:0.85rem; color:#0f2545;">Your Business Name</strong>
+              <div style="font-size:0.75rem; color:#55688a; margin-top:2px; line-height:1.5;">123 Your Street<br>Your Town</div>
+            </div>
+            <div class="invoice-meta-box">
+              <strong>Invoice No: 00008</strong>
+              Date: 11/09/2026<br>
+              <span style="color:#1a73e8; font-weight:600;">Job: MKT-2026-04</span>
+            </div>
+          </div>
+          <table class="invoice-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Unit Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ink Yellow — Sublimation<small>SKU PRI0002</small></td>
+                <td>$29.95</td><td>1</td><td>$29.95</td>
+              </tr>
+              <tr>
+                <td>Maintenance Box — Sublimation<small>SKU PRI0003</small></td>
+                <td>$45.95</td><td>2</td><td>$91.90</td>
+              </tr>
+              <tr>
+                <td>Ink Black — Sublimation<small>SKU PRI0004</small></td>
+                <td>$27.50</td><td>1</td><td>$27.50</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="invoice-subtotals">
+            <div class="invoice-subtotal-row"><span>Subtotal</span><span>$149.35</span></div>
+            <div class="invoice-subtotal-row"><span>GST 15%</span><span>$22.40</span></div>
+            <div class="invoice-subtotal-row total"><span>TOTAL</span><span>$171.75</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow reveal">Custom Invoicing</p>
+          <h2 class="reveal">Professional invoices, straight from the app.</h2>
+          <p class="section-lede reveal">
+            Every checkout can generate a branded invoice with your company name and logo. Invoices are automatically saved to a folder of your choice — organised, searchable, and ready when you need them.
+          </p>
+          <div class="check-list reveal" style="margin-top:1.5rem;">
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Add a job number.</strong> Attach a job or project number to any invoice so you can reconcile purchases against specific jobs later.</p>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Saved to your folder.</strong> Every invoice is stored automatically — browse your full receipts history any time from within the app.</p>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Print or share.</strong> Send the invoice digitally or print it on the spot using any connected printer — including receipt printers.</p>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p><strong>Your branding.</strong> Add your company name and logo so every invoice looks professional and on-brand.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="eyebrow reveal">Everything in one place</p>
+      <h2 class="reveal">Built for the counter, the stall, and the stockroom.</h2>
+      <div class="checkout-features reveal">
+        <div class="checkout-feature-card">
+          <span class="checkout-feature-icon">🖨️</span>
+          <h3>Print on the spot</h3>
+          <p>Connect any printer — standard or receipt — and print invoices or receipts the moment a transaction is complete. No exporting, no extra steps.</p>
+        </div>
+        <div class="checkout-feature-card">
+          <span class="checkout-feature-icon">📁</span>
+          <h3>Receipts folder</h3>
+          <p>Every invoice and receipt is saved automatically to a folder you choose. Your full transaction history is always at your fingertips.</p>
+        </div>
+        <div class="checkout-feature-card">
+          <span class="checkout-feature-icon">🏷️</span>
+          <h3>Job number tracking</h3>
+          <p>Tag any transaction with a job number so you can reconcile stock usage against specific projects, clients, or events.</p>
+        </div>
+        <div class="checkout-feature-card">
+          <span class="checkout-feature-icon">📦</span>
+          <h3>Live inventory sync</h3>
+          <p>Every item sold deducts from your inventory in real time. No separate stock count needed — the checkout and the stockroom stay in perfect sync.</p>
+        </div>
+        <div class="checkout-feature-card">
+          <span class="checkout-feature-icon">📤</span>
+          <h3>Save &amp; share</h3>
+          <p>Send invoices digitally via email, AirDrop, or any sharing method your device supports — straight from the checkout screen.</p>
+        </div>
+        <div class="checkout-feature-card">
+          <span class="checkout-feature-icon">🏢</span>
+          <h3>Company details</h3>
+          <p>Set your business name, logo, and contact details once — they appear automatically on every invoice you generate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS STEPS -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="eyebrow reveal">How a sale works</p>
+      <h2 class="reveal">From scan to receipt in under a minute.</h2>
+      <div class="checkout-steps reveal">
+        <div class="checkout-step">
+          <div class="checkout-step-num">1</div>
+          <h4>Scan or search</h4>
+          <p>Scan a barcode or search by SKU or name to add items to the cart.</p>
+        </div>
+        <div class="checkout-step">
+          <div class="checkout-step-num">2</div>
+          <h4>Review &amp; adjust</h4>
+          <p>Set quantities, check the running total with GST, add a job number if needed.</p>
+        </div>
+        <div class="checkout-step">
+          <div class="checkout-step-num">3</div>
+          <h4>Save, share, or print</h4>
+          <p>Choose your finish — save to records, share digitally, or print on the spot.</p>
+        </div>
+        <div class="checkout-step">
+          <div class="checkout-step-num">4</div>
+          <h4>Stock updates</h4>
+          <p>Inventory deducts automatically. Your stockroom is always up to date.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="section who-strip">
+    <div class="section-inner">
+      <p class="eyebrow reveal">Who it's built for</p>
+      <h2 class="reveal">Any business that sells from stock.</h2>
+      <div class="who-grid reveal">
+        <div class="who-card">
+          <span class="who-card-emoji">🛍️</span>
+          <h3>Retail shops</h3>
+          <p>Serve customers, print receipts, and keep your shelves accurately stocked — all from the same app, on any device behind the counter.</p>
+        </div>
+        <div class="who-card">
+          <span class="who-card-emoji">⛺</span>
+          <h3>Market stalls &amp; pop-ups</h3>
+          <p>Run a full checkout from a tablet or phone. No internet needed for the basics — take it anywhere and stay on top of what you've sold.</p>
+        </div>
+        <div class="who-card">
+          <span class="who-card-emoji">🏭</span>
+          <h3>Trade &amp; wholesale</h3>
+          <p>Attach job numbers to orders, build a paper trail for every transaction, and reconcile stock usage against clients or projects at month end.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="callout reveal">
+        <strong>Ready to see it in action?</strong>
+        Book a walkthrough with your own stock and see the checkout, invoicing, and inventory sync working live — on Mac, Windows or Android.
+        <div style="margin-top:1.2rem;">
+          <a href="contact.html" class="btn btn-primary">Book a Walkthrough →</a>
+        </div>
+      </div>
+
+      <div class="next-page reveal" style="margin-top:2rem;">
+        <a href="contact.html">Next: Get Started →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> Stock Up Manager. All rights reserved.</span>
+    <span>Have a question? <button class="footer-chat-link" id="footer-chat-open">Ask our assistant</button></span>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel">
+    <span class="chat-launcher-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    <span class="chat-launcher-label">Ask about Stock Up Manager</span>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Product assistant chat" hidden>
+    <div class="chat-panel-header">
+      <div>
+        <strong>Stock Up Manager Assistant</strong>
+        <span>Ask anything about the product</span>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Close chat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-message chat-message-bot">
+        Hi! I'm the Stock Up Manager assistant. Ask me how the checkout, invoicing, or job number tracking works.
+      </div>
+    </div>
+
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button class="chat-suggestion" data-q="How does the checkout mode work?">How does checkout work?</button>
+      <button class="chat-suggestion" data-q="Can I print invoices directly from the app?">Can I print invoices?</button>
+      <button class="chat-suggestion" data-q="How do job numbers work?">Job number tracking?</button>
+    </div>
+
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your question…" maxlength="600" autocomplete="off" aria-label="Your question">
+      <button type="submit" class="chat-send" id="chat-send" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
